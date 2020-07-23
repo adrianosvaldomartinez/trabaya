@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <LINK href="styles.css" rel="stylesheet" type="text/css">
+
+    <title>Document</title>
+</head>
+<body style="
+    max-width: 500px;
+    margin: auto;
+  ">
+<h1 >Trabaya!!</h1>
+<h1>donde la gente te busca.</h1>
+
+    <!-- Trigger/Open The Modal -->
+    <button id="logearme"  style="
+    margin-bottom: 10px;">logearme</button>
+    <button id="registrarme"  style="
+    margin-bottom: 10px;">registrarme</button>
+    <br>
+<div style="
+margin-bottom: 10px;" >    
+<button id="myBtn">añadirme!</button>
+<button id="editarme">editarme</button>
+<button id="borrarme">borrarme</button>
+<button id="cerrar sesion">cerrar sesion</button>
+</div>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="closet">&times;</span>
+    <p>Favor selecciona tus datos!</p>
+    <form action="/anadir" method="POST">
+        <label for="estudio">Nivel de estudio:</label>
+            <select id="estudio" name="estudio" required >
+                <option value="" disabled selected hidden>elegir</option>
+                <option value="Primaria">Primaria</option>
+                <option value="Secundaria">Secundaria</option>
+                <option value="Universitario">Universitario</option>
+                <option value="Oficio">Oficio</option>
+            </select> 
+        <label for="Movilidad">Tipo de movilidad:</label>
+            <select id="Movilidad" name="movilidad" required>
+                <option value="" disabled selected hidden>elegir</option>
+                <option value="peaton">Peaton</option>
+                <option value="Moto">Moto</option>
+                <option value="Auto">Auto   </option>
+          </select>     
+        <label for="Sexo">Sexo:</label>
+            <select id="sexo" name="sexo" required>
+                <option value="" disabled selected hidden>elegir</option>
+                <option value="femenino">Femenino</option>
+                <option value="Masculino">Masculino</option>
+             </select> 
+        <label for="telefono">Nro de telefono:</label>
+             <input type="tel" id="Celular" name="telefono" placeholder="09xx-111-111" required>
+        <input type="submit" value="Submit" >  
+    </form>
+  </div>
+
+</div>
+
+<!-- The Modal -->
+<div id="modalderegistro" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content" id= "prueba">
+      <span class="closeregistro">&times;</span>
+      <p>Registrate</p>
+      <form action="/anadirregistro" method="POST">
+          <label for="email">Email:</label>
+               <input type="email" id="email" name="email" placeholder="email" required>
+               <input type="password" id="password" name="password" placeholder="password" required>
+          <input type="submit" value="Submit" >  
+      </form>
+    </div>
+  
+  </div>
+
+  <!-- The Modal -->
+<div id="modaldelogueo" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content" id= "pruebalogueo">
+      <span class="closelogueo">&times;</span>
+      <p>logueate</p>
+      <form action="/anadirregistro" method="POST">
+          <label for="email">Email:</label>
+               <input type="email" id="emaillogueo" name="email" placeholder="email" required>
+               <input type="password" id="passwordlogueo" name="password" placeholder="password" required>
+          <input type="submit" value="Submit" >  
+      </form>
+    </div>
+  
+  </div>
+
+
+
+
+
+
+    <table class="table" >
+    </table>
+
+
+</body>
+<script src="script.js">  </script>
+</html>
