@@ -3,6 +3,11 @@ const express = require('express'),
       morgan = require('morgan'),
       mysql = require('mysql'),
       myConnection = require('express-myconnection');
+      const bcrypt = require('bcrypt')
+      const passport = require('passport')
+      const flash = require('express-flash')
+      const session = require('express-session')
+      const methodOverride = require('method-override')
 
 const app = express();
 
@@ -30,6 +35,20 @@ app.use('/', customerRoutes);
 
 // static files
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+// const initializePassport = require('./passport-config')
+// //funcion creada en passport config, tengo que reemplaze user por nombre de db de users?
+// initializePassport(
+//   passport,
+//   email => trabayauser.find(user => user.email === email),
+//   id => trabayauser.find(user => user.id === id)
+// )
+
+
+
+
+
 
 // starting the server
 app.listen(app.get('port'), () => {

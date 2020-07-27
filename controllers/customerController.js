@@ -1,4 +1,5 @@
 const controller = {};
+const bcrypt = require('bcrypt')
 
 controller.list = (req, res) => {
   req.getConnection((err, conn) => {
@@ -24,36 +25,37 @@ controller.save = (req, res) => {
     })
   })
 };
+//achieve that hashedpassword is stored
+controller.register = async (req, res) => {
+  try {
+    const mail = req.body.mail
+    const contra = await bcrypt.hash(req.body.contrasena, 10)
+    // const contra = req.body.contrasena
+    console.log(mail)
+    console.log(contra)
 
-// controller.edit = (req, res) => {
-//   const { id } = req.params;
-//   req.getConnection((err, conn) => {
-//     conn.query("SELECT * FROM customer WHERE id = ?", [id], (err, rows) => {
-//       res.render('customers_edit', {
-//         data: rows[0]
-//       })
-//     });
-//   });
-// };
+    req.getConnection((err, connection) => {
+    // connection.query('INSERT INTO trabayauser (mail, contrasena) VALUES ?', [mail,contra] ,(err, trabayauser) => {
+    // connection.query('INSERT INTO trabayauser (mail, contrasena) VALUES ("papa","locote")' ,(err, trabayauser) => {  
+    connection.query('INSERT INTO trabayauser (mail, contrasena) VALUES ?',[[[mail,contra]]] ,(err, trabayauser) => {  
+      res.redirect('/')
+      console.log(trabayauser)
+      })})}
+   catch {
+    res.send("error en el catch")
+  }}
 
-// controller.update = (req, res) => {
-//   const { id } = req.params;
-//   const newCustomer = req.body;
-//   req.getConnection((err, conn) => {
+  // controller.register =  (req, res) => {
+  //   try{res.send('<p>Nice to Eat Ya!</p>')}
+       
+  //    catch {
+  //     res.redirect('/register')
+  //   }
+  // }
 
-//   conn.query('UPDATE customer set ? where id = ?', [newCustomer, id], (err, rows) => {
-//     res.redirect('/');
-//   });
-//   });
-// };
 
-// controller.delete = (req, res) => {
-//   const { id } = req.params;
-//   req.getConnection((err, connection) => {
-//     connection.query('DELETE FROM customer WHERE id = ?', [id], (err, rows) => {
-//       res.redirect('/');
-//     });
-//   });
-// }
 
-module.exports = controller;
+
+  module.exports = controller;
+
+
