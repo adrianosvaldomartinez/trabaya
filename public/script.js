@@ -20,6 +20,7 @@ window.addEventListener("click", function(event) {
   }
 });}
 
+//FUNCIONES QUE SE LLAMAN TAMBIEN AL ABRIR LA PAGINA, COMO PARA QUE ESTEN LISTAS CUANDO HACES CLICK Y MOSTRARTE EL MODAL
 crearmodales('modal',"myModal",'btn',"myBtn",'span' ,"closet");
 crearmodales('modalregistro',"modalderegistro","btnregistro","registrarme","spanregistro" ,"closeregistro")
 crearmodales('modallogueo',"modaldelogueo","btnlogueo","logearme","cierrelogueo" ,"closelogueo")
@@ -54,21 +55,20 @@ function generateTableHead(table, data) {
   }
 }
 
-//fetch para get--------------------------------------------------------
+//def de de funcion para realizar el fetch de los datos para poblar la tabla y luego llama las funciones que crean y muestran la tabla ---
 function actualizar () {return fetch('http://localhost:3000/b')
-// .then(res=> console.log(res))
 .then(res=> res.json())
 .then(function (res){ let dbinteresados = res
 //el lugar donde va a ir mi tabla
 let tables = document.querySelector(".table"); 
 //identifica y separa en un array solo los keys del objeto de acuerdo al indice que le di (o es el primero)si tengo mas key en otro indice, no van a aparecer
 let data = Object.keys(dbinteresados[0]);
-//llamado de funciones
+//llamado de funciones de generacion de tablas
 generateTable(tables, dbinteresados);// generate the table first
 generateTableHead(tables, data); // then the head
 }) 
 }
-
+//llamado a la funcion para que la tabla se actualize con los datos de la bd, LLAMAR AL ABRIR LA PAGINA
 actualizar()
 
 // mas 1000 contatos fueron logrados (contador de click en ver telefon)

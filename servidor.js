@@ -4,12 +4,16 @@ const express = require('express'),
       mysql = require('mysql'),
       myConnection = require('express-myconnection');
       const bcrypt = require('bcrypt')
-      const passport = require('passport')
+
       const flash = require('express-flash')
       const session = require('express-session')
       const methodOverride = require('method-override')
+      const passport = require('passport')
 
 const app = express();
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // importing routes
 const customerRoutes = require('./routes/customer');
@@ -37,13 +41,7 @@ app.use('/', customerRoutes);
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-// const initializePassport = require('./passport-config')
-// //funcion creada en passport config, tengo que reemplaze user por nombre de db de users?
-// initializePassport(
-//   passport,
-//   email => trabayauser.find(user => user.email === email),
-//   id => trabayauser.find(user => user.id === id)
-// )
+
 
 
 
@@ -54,3 +52,4 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.listen(app.get('port'), () => {
   console.log(`server on port ${app.get('port')}`);
 });
+
