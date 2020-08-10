@@ -1,3 +1,7 @@
+
+// let estadotesteo = require('../controllers/customerController')
+// let testeo ="cambiame"
+
 function crearmodales(modal1,idmodal,boton, idboton, cierre,idcierra ){
 var modal1 = document.getElementById(idmodal);
 // Get the button that opens the modal

@@ -1,54 +1,57 @@
 
-
-const passport = require('passport')
 const router = require('express').Router();
-
+const passport = require('passport')
 LocalStrategy = require('passport-local').Strategy;
-
-
-
-
-  
-
-
-
+// const flash = require('express-flash')
+const helpersp = require('./helpers');
+const {connectionadri} = require('../conecction2');
 const customerController = require('../controllers/customerController');
+
 
 //esta ruta es llamada al abrir la pagina buscar los datos de la bd para poder usar eso datos para poblar las tablas con la func actualizar 
 router.get('/b', customerController.list);
 //esta ruta envia los datos a la bd trabaya1 desde el anadir
 router.post('/anadir', customerController.save);
-
 //esta ruta permite almacenar los datos de registro en la bd
 router.post('/register', customerController.register);
-
 // router.post('/login', customerController.login);
+
+connectionadri.query('SELECT * FROM trabayamain', function (error, results, fields) {
+  if (error) throw error;
+  });
 
 router.post('/login', passport.authenticate('local.signin', {
     successRedirect: '/',
-    failureRedirect: '"error"',
+    failureRedirect: '"error caca"',
     failureFlash: true
-  }))
+}))
 
+  // const test= connectionadri.query('SELECT * FROM trabayauser WHERE mail = ?', ['test@test.com'], function (error, results, fields){
+  //   console.log (results[0].id)
+  // });
 
-  passport.use('local.signin', new LocalStrategy({
-    usernameField: 'mail',
-    passwordField: 'contrasena',
-    passReqToCallback: true
-  }, async (req, username, password, done) => {
-    const rows = await conn.query('SELECT * FROM trabayauser WHERE mail = ?', [username]);
+passport.use('local.signin', new LocalStrategy({
+  usernameField: 'mail',
+  passwordField: 'contrasena',
+  passReqToCallback: true 
+  }
+  ,async (req, username, password, done) => {
+    const rows= await connectionadri.query('SELECT * FROM trabayauser WHERE mail = ?', [username]);   
+    console.log (rows[0].id, "estes es el id")
     if (rows.length > 0) {
       const user = rows[0];
+      console.log (user.contrasena)
       //password solo es el que enviar el usuario y user.passwrod es el de la db
-      const validPassword = await helpers.matchPassword(password, user.contrasena)
+      const validPassword = await helpersp.matchPassword(password, user.contrasena)
+      console.log( "MIRA ACA A VER SI DICE TRUE O FALSE" +validPassword)
       if (validPassword) {
         done(null, user, req.flash('success', 'Welcome ' + user.username));
       } else {
         done(null, false, req.flash('message', 'Incorrect Password'));
+      }}
+      else {
+        return done(null, false, req.flash('message', 'The Username does not exists.'));
       }
-    } else {
-      return done(null, false, req.flash('message', 'The Username does not exists.'));
-    }
   }));
 
 
@@ -57,11 +60,11 @@ router.post('/login', passport.authenticate('local.signin', {
     done(null, user.id);
   });
   
-  passport.deserializeUser(function(id, done) {
-    User.findById(id, function(err, user) {
-      done(err, user);
-    });
+  passport.deserializeUser(async (id, done) => {
+    const rows = await connectionadri.query('SELECT * FROM trabayauser WHERE id = ?', [id]);
+    done(null, rows[0]);
   });
+  
 
   
 // router.post('/login', checkNotAuthenticated, passport.authenticate('local', {
@@ -97,7 +100,7 @@ router.post('/login', passport.authenticate('local.signin', {
 // )
 
 
-
+ 
 
 // router.get('/update/:id', customerController.edit);
 // router.post('/update/:id', customerController.update);

@@ -1,19 +1,39 @@
+
+
+// if (process.env.NODE_ENV !== 'production') {
+//   require('.env').config()
+// }
 const express = require('express'),
       path = require('path'),
       morgan = require('morgan'),
       mysql = require('mysql'),
       myConnection = require('express-myconnection');
       const bcrypt = require('bcrypt')
-
-      const flash = require('express-flash')
-      const session = require('express-session')
-      const methodOverride = require('method-override')
+      // const flash = require('express-flash')
+      const flash = require('connect-flash');
+      const session = require('express-session')    
       const passport = require('passport')
+      const methodOverride = require('method-override')
+      
 
 const app = express();
 
+
+app.use(session({
+  secret: "cats",
+  resave: false,
+  saveUninitialized: false
+}))
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(flash())
+app.use((req, res, next) => {
+  app.locals.message = req.flash('message');
+  app.locals.success = req.flash('success');
+  app.locals.user = req.user;
+  next();
+});
 
 // importing routes
 const customerRoutes = require('./routes/customer');
@@ -25,6 +45,7 @@ app.set('view engine', 'html')
 
 // middlewares
 app.use(morgan('dev')); 
+
 app.use(myConnection(mysql, {
   host: 'localhost',
   user: 'root',
@@ -32,6 +53,11 @@ app.use(myConnection(mysql, {
   port: 3306,
   database: 'trabaya1'
 }, 'single'));
+
+
+
+
+
 app.use(express.urlencoded({extended: false}));
 
 // routes
@@ -52,4 +78,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.listen(app.get('port'), () => {
   console.log(`server on port ${app.get('port')}`);
 });
+
+
 
