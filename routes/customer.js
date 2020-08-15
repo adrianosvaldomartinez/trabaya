@@ -15,6 +15,9 @@ router.post('/anadir', customerController.save);
 //esta ruta permite almacenar los datos de registro en la bd
 router.post('/register', customerController.register);
 // router.post('/login', customerController.login);
+router.get('/sabermiidsession', customerController.sabersesion);
+
+
 
 connectionadri.query('SELECT * FROM trabayamain', function (error, results, fields) {
   if (error) throw error;
@@ -45,6 +48,7 @@ passport.use('local.signin', new LocalStrategy({
       const validPassword = await helpersp.matchPassword(password, user.contrasena)
       console.log( "MIRA ACA A VER SI DICE TRUE O FALSE" +validPassword)
       if (validPassword) {
+        // return done(null, false, { message: 'BIENVENIDO FIESTA FIESTA' })
         done(null, user, req.flash('success', 'Welcome ' + user.username));
       } else {
         done(null, false, req.flash('message', 'Incorrect Password'));

@@ -13,6 +13,7 @@
   ">
 <h1 >Trabaya!!</h1>
 <h1>donde la gente te busca.</h1>
+<div id= "testeo"></div>
 
     <!-- Trigger/Open The Modal -->
     <button id="logearme"  style="
@@ -26,6 +27,10 @@ margin-bottom: 10px;" >
 <button id="editarme">editarme</button>
 <button id="borrarme">borrarme</button>
 <button id="cerrar sesion">cerrar sesion</button>
+<form action="/sabermiidsession" method="GET">
+  <input type="submit" value="saber sesion" >  
+</form>
+
 </div>
 
 <!-- The Modal -->
@@ -89,6 +94,9 @@ margin-bottom: 10px;" >
     <div class="modal-content" id= "pruebalogueo">
       <span class="closelogueo">&times;</span>
       <p>logueate</p>
+      <div class="cmensajeflash" id= "mensajeflash">
+        <p></p>
+      </div>
       <form action="/login" method="POST">
           <label for="email">Email:</label>
                <input type="email" id="emaillogueo" name="mail" placeholder="email" required>

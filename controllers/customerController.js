@@ -23,6 +23,18 @@ const bcrypt = require('bcrypt')
 //   })})
 //   }
 //   }
+
+controller.sabersesion = (req, res) => {
+  console.log ("xxxxxxxxxxxxxxxxxxxxxxxx")
+  console.log (req.user.id) 
+  
+  console.log ("el boton JAJAJAJAJAJ")
+  res.redirect('/')
+  
+};
+
+
+
 controller.list = (req, res) => {
   req.getConnection((err, conn) => {
     conn.query('SELECT * FROM trabayamain', (err, trabayamain) => {
@@ -59,7 +71,7 @@ controller.register = async (req, res) => {
       connection.query('INSERT INTO trabayauser (mail, contrasena) VALUES ?',[[[mail,contra]]],
       (err, trabayauser) => { 
         console.log("respuesta existosa") 
-        // let testeo = "cambiado!!!!"
+        
         res.redirect('/') 
         // and click on btnlogueo
         console.log(trabayauser)
@@ -79,5 +91,5 @@ controller.register = async (req, res) => {
   //   }
   // }
   module.exports = controller;
-  // module.exports = testeo
+  
 

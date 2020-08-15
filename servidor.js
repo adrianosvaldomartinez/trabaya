@@ -40,8 +40,11 @@ const customerRoutes = require('./routes/customer');
 
 // settings
 app.set('port', process.env.PORT || 3000);
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'html')
+
+// linea de abajo indicaria  donde esta la carpeta views, que en mi caso no uso
+// app.set('views', path.join(__dirname, 'views'));
+//linea de abajo se usa si se quiere usar template engine como ejs
+// app.set('view engine', 'html')
 
 // middlewares
 app.use(morgan('dev')); 
@@ -57,10 +60,11 @@ app.use(myConnection(mysql, {
 
 
 
-
+//la linea de abajo se debe usar para que expreses pueda entender los datos enviados por un formulario
 app.use(express.urlencoded({extended: false}));
 
-// routes
+// routes si esto no estam no carga la tabla, 
+//las routas indican que hacer cuando se recibe un post o get
 app.use('/', customerRoutes);
 
 // static files

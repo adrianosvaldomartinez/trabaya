@@ -1,6 +1,7 @@
+//hacer la pr
 
-// let estadotesteo = require('../controllers/customerController')
-// let testeo ="cambiame"
+
+
 
 function crearmodales(modal1,idmodal,boton, idboton, cierre,idcierra ){
 var modal1 = document.getElementById(idmodal);
@@ -74,6 +75,15 @@ generateTableHead(tables, data); // then the head
 }
 //llamado a la funcion para que la tabla se actualize con los datos de la bd, LLAMAR AL ABRIR LA PAGINA
 actualizar()
+
+// var areamensaje = document.getElementById("testeo");
+// if (message != null){
+//     consolelog (mesage)
+//     areamensaje.innerHTML +="<h3>opa lalalaaaaa</h3>"
+//   }
+
+
+
 
 // mas 1000 contatos fueron logrados (contador de click en ver telefon)
 // mas de 100 personas ofrecerieron su servicios (contador de personas que enviaron datos como empleado)
