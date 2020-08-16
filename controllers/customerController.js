@@ -26,22 +26,25 @@ const bcrypt = require('bcrypt')
 
 controller.sabersesion = (req, res) => {
   console.log ("xxxxxxxxxxxxxxxxxxxxxxxx")
-  console.log (req.user.id) 
-  
+  if(req.hasOwnProperty('user')){
+    console.log(req.user.id)
+  } 
+  else{
+    res.send("plz login")
+  };
   console.log ("el boton JAJAJAJAJAJ")
   res.redirect('/')
-  
 };
 
 
 
 controller.list = (req, res) => {
   req.getConnection((err, conn) => {
-    conn.query('SELECT * FROM trabayamain', (err, trabayamain) => {
+    conn.query('SELECT id, estudio, movilidad, sexo, telefono FROM tablatraba', (err, tablatraba) => {
      if (err) {
       res.json(err);
      }
-     res.send(trabayamain);
+     res.send(tablatraba);
     //  
     //  , {data: customers}  
     });
@@ -49,16 +52,31 @@ controller.list = (req, res) => {
 };
 
 controller.save = (req, res) => {
-  const data = req.body;
-  console.log(req.body)
-  req.getConnection((err, connection) => {
-    const query = connection.query('INSERT INTO trabayamain set ?', data, (err, trabayamain) => {
-      console.log(trabayamain)
-      res.redirect('/')
-      //la linea de abajo no funciona, era para redirigir a login , pero tampoco afecta funcionamiento
-      // getElementById('modallogueo').style.display = "block"
+  if(req.hasOwnProperty('user')){
+    const databody = req.body;
+    const dataid = req.user.id;
+    console.log(databody)
+    console.log(dataid)
+    req.getConnection((err, connection) => {
+      if (err)
+        {res.send("error en coneccion")}
+      else {
+       connection.query('UPDATE tablatraba SET ? WHERE id = ? ', [databody, dataid], (err, tablatraba) => {
+         if (err){
+           console.log(err)
+         }
+        // UPDATE tablatraba SET estudio='primaria', movilidad='auto', sexo ='masculino', telefono= '111' WHERE id = 2;
+        console.log(tablatraba)
+        res.redirect('/')
+        //la linea de abajo no funciona, era para redirigir a login , pero tampoco afecta funcionamiento
+        // getElementById('modallogueo').style.display = "block"
+        })
+      }
     })
-  })
+    }
+  
+  else
+  res.send("plz login")
 };
 // achieve that hashedpassword is stored
 controller.register = async (req, res) => {
@@ -68,13 +86,13 @@ controller.register = async (req, res) => {
     console.log(mail)
     console.log(contra)
     req.getConnection((err, connection) => {
-      connection.query('INSERT INTO trabayauser (mail, contrasena) VALUES ?',[[[mail,contra]]],
-      (err, trabayauser) => { 
+      connection.query('INSERT INTO tablatraba (mail, contrasena) VALUES ?',[[[mail,contra]]],
+      (err, tablatraba) => { 
         console.log("respuesta existosa") 
         
         res.redirect('/') 
         // and click on btnlogueo
-        console.log(trabayauser)
+        console.log(tablatraba)
       })
     })
   }

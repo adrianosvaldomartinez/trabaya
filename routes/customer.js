@@ -29,7 +29,7 @@ router.post('/login', passport.authenticate('local.signin', {
     failureFlash: true
 }))
 
-  // const test= connectionadri.query('SELECT * FROM trabayauser WHERE mail = ?', ['test@test.com'], function (error, results, fields){
+  // const test= connectionadri.query('SELECT * FROM tablatraba WHERE mail = ?', ['test@test.com'], function (error, results, fields){
   //   console.log (results[0].id)
   // });
 
@@ -39,7 +39,7 @@ passport.use('local.signin', new LocalStrategy({
   passReqToCallback: true 
   }
   ,async (req, username, password, done) => {
-    const rows= await connectionadri.query('SELECT * FROM trabayauser WHERE mail = ?', [username]);   
+    const rows= await connectionadri.query('SELECT * FROM tablatraba WHERE mail = ?', [username]);   
     console.log (rows[0].id, "estes es el id")
     if (rows.length > 0) {
       const user = rows[0];
@@ -65,7 +65,7 @@ passport.use('local.signin', new LocalStrategy({
   });
   
   passport.deserializeUser(async (id, done) => {
-    const rows = await connectionadri.query('SELECT * FROM trabayauser WHERE id = ?', [id]);
+    const rows = await connectionadri.query('SELECT * FROM tablatraba WHERE id = ?', [id]);
     done(null, rows[0]);
   });
   
@@ -99,8 +99,8 @@ passport.use('local.signin', new LocalStrategy({
 // //Esta funcion tiene que estar en el scope de la ruta que usa  passport
 // initializePassport(
 //   passport,
-//   email => trabayauser.find(user => user.email === email),
-//   id => trabayauser.find(user => user.id === id)
+//   email => tablatraba.find(user => user.email === email),
+//   id => tablatraba.find(user => user.id === id)
 // )
 
 
