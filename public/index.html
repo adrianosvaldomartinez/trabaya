@@ -23,10 +23,11 @@
     <br>
 <div style="
 margin-bottom: 10px;" >    
-<button id="myBtn">añadirme!</button>
-<button id="editarme">editarme</button>
+<button id="myBtn">añadirme o editarme de la lista!</button>
 <button id="borrarme">borrarme</button>
-<button id="cerrar sesion">cerrar sesion</button>
+<form action="/cerrarsesion" method="GET">
+  <input type="submit" value="cerrar sesion" >  
+</form>
 <form action="/sabermiidsession" method="GET">
   <input type="submit" value="saber sesion" >  
 </form>

@@ -23,6 +23,16 @@ const bcrypt = require('bcrypt')
 //   })})
 //   }
 //   }
+controller.cerrarsesion = (req, res) => {
+  if(req.hasOwnProperty('user')){
+    req.logout()
+    res.redirect('/')
+  } 
+  else{
+    res.send("no estas logeado")
+  };
+  
+};
 
 controller.sabersesion = (req, res) => {
   console.log ("xxxxxxxxxxxxxxxxxxxxxxxx")

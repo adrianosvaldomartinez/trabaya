@@ -16,6 +16,7 @@ router.post('/anadir', customerController.save);
 router.post('/register', customerController.register);
 // router.post('/login', customerController.login);
 router.get('/sabermiidsession', customerController.sabersesion);
+router.get('/cerrarsesion', customerController.cerrarsesion);
 
 
 
