@@ -23,6 +23,10 @@ const bcrypt = require('bcrypt')
 //   })})
 //   }
 //   }
+controller.otrapaginatest = (req, res) => {
+  res.redirect('../otroshtml/test.html')  
+};
+
 controller.cerrarsesion = (req, res) => {
   if(req.hasOwnProperty('user')){
     req.logout()
@@ -31,7 +35,6 @@ controller.cerrarsesion = (req, res) => {
   else{
     res.send("no estas logeado")
   };
-  
 };
 
 controller.sabersesion = (req, res) => {
@@ -50,7 +53,7 @@ controller.sabersesion = (req, res) => {
 
 controller.list = (req, res) => {
   req.getConnection((err, conn) => {
-    conn.query('SELECT id, estudio, movilidad, sexo, telefono FROM tablatraba', (err, tablatraba) => {
+    conn.query('SELECT id, estudio, movilidad, sexo, telefono FROM tablatraba WHERE fecharegistro >= now() - INTERVAL 1 DAY', (err, tablatraba) => {
      if (err) {
       res.json(err);
      }

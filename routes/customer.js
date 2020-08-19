@@ -17,6 +17,7 @@ router.post('/register', customerController.register);
 // router.post('/login', customerController.login);
 router.get('/sabermiidsession', customerController.sabersesion);
 router.get('/cerrarsesion', customerController.cerrarsesion);
+router.get('/otrapaginatest', customerController.otrapaginatest);
 
 
 

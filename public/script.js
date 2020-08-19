@@ -1,7 +1,9 @@
 //hacer la pr
 
 
-
+if(){
+  
+}
 
 function crearmodales(modal1,idmodal,boton, idboton, cierre,idcierra ){
 var modal1 = document.getElementById(idmodal);
