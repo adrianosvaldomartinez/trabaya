@@ -25,8 +25,9 @@ controller.esconderme = (req, res) => {
     })
     }
   
-  else
+  else {
   res.send("plz login para esconderte")
+  }
 };
 
 controller.otrapaginatest = (req, res) => {
@@ -58,18 +59,28 @@ controller.sabersesion = (req, res) => {
 
 
 controller.list = (req, res) => {
-  req.getConnection((err, conn) => {
-    conn.query('SELECT id, estudio, movilidad, sexo, telefono FROM tablatraba WHERE ModifiedTime >= now() - INTERVAL 1 DAY AND oculto = 1', (err, tablatraba) => {
-     if (err) {
-      res.json(err);
-     }
-     res.send(tablatraba);
-    //  
-    //  , {data: customers}  
+    if(req.hasOwnProperty('user')){
+      req.getConnection((err, conn) => {
+        conn.query('SELECT id, estudio, movilidad, sexo, telefono FROM tablatraba WHERE ModifiedTime >= now() - INTERVAL 1 DAY AND oculto = 1', (err, tablatraba) => {
+        if (err) {
+          res.json(err);
+        }
+        res.send(tablatraba);
+        });
+      });
+    }
+   else{
+    req.getConnection((err, conn) => {
+      conn.query('SELECT id, estudio, movilidad, sexo, mensaje1 FROM tablatraba WHERE ModifiedTime >= now() - INTERVAL 1 DAY AND oculto = 1', (err, tablatraba) => {
+      if (err) {
+        res.json(err);
+      }
+      res.send(tablatraba);
+      });
     });
-  });
-};
 
+   }
+}
 controller.save = (req, res) => {
   if(req.hasOwnProperty('user')){
     const databody = req.body;
@@ -94,8 +105,9 @@ controller.save = (req, res) => {
     })
     }
   
-  else
+  else{
   res.send("plz login")
+  }
 };
 // achieve that hashedpassword is stored
 controller.register = async (req, res) => {
