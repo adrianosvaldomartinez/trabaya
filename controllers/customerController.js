@@ -56,12 +56,10 @@ controller.sabersesion = (req, res) => {
   res.redirect('/')
 };
 
-
-
 controller.list = (req, res) => {
     if(req.hasOwnProperty('user')){
       req.getConnection((err, conn) => {
-        conn.query('SELECT id, estudio, movilidad, sexo, telefono FROM tablatraba WHERE ModifiedTime >= now() - INTERVAL 1 DAY AND oculto = 1', (err, tablatraba) => {
+        conn.query('SELECT id, estudio, movilidad, sexo, telefono, SEC_TO_TIME(30-((now()-ModifiedTime))) AS `Tiempo restante` FROM tablatraba WHERE ModifiedTime >= now() - INTERVAL 30 SECOND AND oculto = 1', (err, tablatraba) => {
         if (err) {
           res.json(err);
         }
@@ -71,7 +69,7 @@ controller.list = (req, res) => {
     }
    else{
     req.getConnection((err, conn) => {
-      conn.query('SELECT id, estudio, movilidad, sexo, mensaje1 FROM tablatraba WHERE ModifiedTime >= now() - INTERVAL 1 DAY AND oculto = 1', (err, tablatraba) => {
+      conn.query('SELECT id, estudio, movilidad, sexo, TELEFONE, SEC_TO_TIME(30-((now()-ModifiedTime))) AS `Tiempo restante` FROM tablatraba WHERE ModifiedTime >= now() - INTERVAL 30 SECOND AND oculto = 1', (err, tablatraba) => {
       if (err) {
         res.json(err);
       }
