@@ -1,5 +1,3 @@
-
-
 // if (process.env.NODE_ENV !== 'production') {
 //   require('.env').config()
 // }
@@ -15,9 +13,7 @@ const express = require('express'),
       const passport = require('passport')
       const methodOverride = require('method-override')
       
-
 const app = express();
-
 
 app.use(session({
   secret: "cats",
@@ -57,26 +53,15 @@ app.use(myConnection(mysql, {
   database: 'trabaya1'
 }, 'single'));
 
-
-
-
 //la linea de abajo se debe usar para que expreses pueda entender los datos enviados por un formulario
 app.use(express.urlencoded({extended: false}));
 
-// routes si esto no estam no carga la tabla, 
+// routes si esto no estam no carga la tabla, osea que encuentra y envia la carpeta public, pero no la ruta customers route
 //las routas indican que hacer cuando se recibe un post o get
 app.use('/', customerRoutes);
 
-// static files
+// static files si esto no esta sale cannot GET, osea no encuentra los archivos
 app.use(express.static(path.join(__dirname, 'public')));
-
-
-
-
-
-
-
-
 
 // starting the server
 app.listen(app.get('port'), () => {

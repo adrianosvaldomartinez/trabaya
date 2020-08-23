@@ -19,6 +19,7 @@ router.get('/sabermiidsession', customerController.sabersesion);
 router.get('/cerrarsesion', customerController.cerrarsesion);
 router.get('/otrapaginatest', customerController.otrapaginatest);
 
+router.post('/escondido', customerController.esconderme);
 
 
 connectionadri.query('SELECT * FROM trabayamain', function (error, results, fields) {

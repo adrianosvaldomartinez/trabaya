@@ -2,29 +2,35 @@ const controller = {};
 const bcrypt = require('bcrypt')
 
 
-// SELECT EXISTS (SELECT * FROM trabayauser WHERE mail = 'papa' AND contrasena = 'locote')
-// SELECT * FROM trabayauser WHERE mail = 'papa' AND contrasena = 'locote'
-// SELECT id FROM trabayauser WHERE mail = 'mail' 
-// conn.query ('SELECT * FROM trabayauser WHERE mail = ? AND contrasena = ?'),
+controller.esconderme = (req, res) => {
+  if(req.hasOwnProperty('user')){
+    const databody = req.body;
+    const dataid = req.user.id;
+    console.log(dataid)
+    req.getConnection((err, connection) => {
+      if (err)
+        {res.send("error en coneccion")}
+      else {
+       connection.query('UPDATE tablatraba SET oculto = 0 WHERE id = ? ', dataid, (err, tablatraba) => {
+         if (err){
+           console.log(err)
+         }
+        // UPDATE tablatraba SET estudio='primaria', movilidad='auto', sexo ='masculino', telefono= '111' WHERE id = 2;
+        console.log(tablatraba)
+        res.redirect('/')
+        //la linea de abajo no funciona, era para redirigir a login , pero tampoco afecta funcionamiento
+        // getElementById('modallogueo').style.display = "block"
+        })
+      }
+    })
+    }
+  
+  else
+  res.send("plz login para esconderte")
+};
 
-// controller.login = async(req, res) => {
-//    {
-//   console.log (req.body.mail)
-//   console.log (req.body.contrasena)  
-// let userprovided="papa"
-// let paswordprovided="1"
-// req.getConnection ((err, conn) => {
-//    conn.query ('SELECT * FROM trabayauser WHERE mail = ?', [req.body.mail],
-
-//   (err, infobtenida) => {
-//     console.log (err)
-//     console.log (infobtenida) 
-//     res.send(infobtenida)
-//   })})
-//   }
-//   }
 controller.otrapaginatest = (req, res) => {
-  res.redirect('../otroshtml/test.html')  
+  res.redirect('publicbyserver.html')  
 };
 
 controller.cerrarsesion = (req, res) => {
@@ -53,7 +59,7 @@ controller.sabersesion = (req, res) => {
 
 controller.list = (req, res) => {
   req.getConnection((err, conn) => {
-    conn.query('SELECT id, estudio, movilidad, sexo, telefono FROM tablatraba WHERE fecharegistro >= now() - INTERVAL 1 DAY', (err, tablatraba) => {
+    conn.query('SELECT id, estudio, movilidad, sexo, telefono FROM tablatraba WHERE ModifiedTime >= now() - INTERVAL 1 DAY AND oculto = 1', (err, tablatraba) => {
      if (err) {
       res.json(err);
      }
@@ -74,7 +80,7 @@ controller.save = (req, res) => {
       if (err)
         {res.send("error en coneccion")}
       else {
-       connection.query('UPDATE tablatraba SET ? WHERE id = ? ', [databody, dataid], (err, tablatraba) => {
+       connection.query('UPDATE tablatraba SET ?,oculto = 1 WHERE id = ? ', [databody, dataid], (err, tablatraba) => {
          if (err){
            console.log(err)
          }
@@ -114,13 +120,6 @@ controller.register = async (req, res) => {
   }
 }
 
-  // controller.register =  (req, res) => {
-  //   try{res.send('<p>Nice to Eat Ya!</p>')}
-       
-  //    catch {
-  //     res.redirect('/register')
-  //   }
-  // }
   module.exports = controller;
   
 

@@ -14,6 +14,7 @@
 <h1 >Trabaya!!</h1>
 <h1>donde la gente te busca.</h1>
 <div id= "testeo"></div>
+<li><a href="inpublicsinservidor.html">html en public, sin ir por servidor, link solo en html</a></li>
 
     <!-- Trigger/Open The Modal -->
     <button id="logearme"  style="
@@ -24,7 +25,11 @@
 <div style="
 margin-bottom: 10px;" >    
 <button id="myBtn">añadirme o editarme de la lista!</button>
-<button id="borrarme">borrarme</button>
+
+<form action="/escondido" method="POST">
+  <input type="submit" value="BORRAME" >  
+</form>
+
 <form action="/cerrarsesion" method="GET">
   <input type="submit" value="cerrar sesion" >  
 </form>
@@ -32,7 +37,7 @@ margin-bottom: 10px;" >
   <input type="submit" value="saber sesion" >  
 </form>
 <form action="/otrapaginatest" method="GET">
-  <input type="submit" value="enviame a otra pagina" >  
+  <input type="submit" value="pedir otra pagina en public a traves de servidor" >  
 </form>
 
 
