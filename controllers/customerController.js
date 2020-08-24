@@ -3,10 +3,31 @@ const bcrypt = require('bcrypt')
 
 
 
-controller.index = (req, res) => {
-  res.render('index.ejs')  
-};
+function gomain (){
+if(req.hasOwnProperty('user')){
+  res.render('index.ejs', { 
+    usuario :"Bienvenido"+ req.user.mail }   
+  )
+}
+else{
+  res.render('index.ejs', { 
+    usuario :"Bienvenido visitante, porfavor logueate o registrate"
+  })
+}
+}
 
+controller.index = (req, res) => {
+  if(req.hasOwnProperty('user')){
+    res.render('index.ejs', { 
+      usuario :"Bienvenido"+ req.user.mail }   
+    )
+  }
+  else{
+    res.render('index.ejs', { 
+      usuario :"Bienvenido visitante, porfavor logueate o registrate"
+    })
+  }
+}
 
 controller.esconderme = (req, res) => {
   if(req.hasOwnProperty('user')){
@@ -22,17 +43,17 @@ controller.esconderme = (req, res) => {
            console.log(err)
          }
         // UPDATE tablatraba SET estudio='primaria', movilidad='auto', sexo ='masculino', telefono= '111' WHERE id = 2;
-        console.log(tablatraba)
-        res.render('index.ejs')
-        //la linea de abajo no funciona, era para redirigir a login , pero tampoco afecta funcionamiento
-        // getElementById('modallogueo').style.display = "block"
+        else {
+          console.log(tablatraba)
+          res.render('index.ejs', { 
+            usuario :"Bienvenido"+ req.user.mail }   
+        )}
         })
       }
     })
     }
-  
   else {
-  res.send("plz login para esconderte")
+  res.send("Solo los usuario logueados pueden borrar sus registros")
   }
 };
 
@@ -43,7 +64,9 @@ controller.otrapaginatest = (req, res) => {
 controller.cerrarsesion = (req, res) => {
   if(req.hasOwnProperty('user')){
     req.logout()
-    res.render('index.ejs')
+    res.render('index.ejs', { 
+      usuario :"Bienvenido visitante, porfavor logueate o registrate"
+    })
   } 
   else{
     res.send("no estas logeado")
@@ -101,7 +124,16 @@ controller.save = (req, res) => {
          }
         // UPDATE tablatraba SET estudio='primaria', movilidad='auto', sexo ='masculino', telefono= '111' WHERE id = 2;
         console.log(tablatraba)
-        res.render('index.ejs')
+        if(req.hasOwnProperty('user')){
+          res.render('index.ejs', { 
+            usuario :"Bienvenido"+ req.user.mail }   
+          )
+        }
+        else{
+          res.render('index.ejs', { 
+            usuario :"Bienvenido visitante, porfavor logueate o registrate"
+          })
+        }
         //la linea de abajo no funciona, era para redirigir a login , pero tampoco afecta funcionamiento
         // getElementById('modallogueo').style.display = "block"
         })
@@ -125,7 +157,9 @@ controller.register = async (req, res) => {
       (err, tablatraba) => { 
         console.log("respuesta existosa") 
         
-        res.render('index.ejs') 
+        res.render('index.ejs', { 
+          usuario :"Bienvenido visitante, porfavor logueate o registrate"
+        }) 
         // and click on btnlogueo
         console.log(tablatraba)
       })
