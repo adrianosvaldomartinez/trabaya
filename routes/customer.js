@@ -28,7 +28,7 @@ connectionadri.query('SELECT * FROM trabayamain', function (error, results, fiel
 
 router.post('/login', passport.authenticate('local.signin', {
     successRedirect: '/',
-    failureRedirect: '"error caca"',
+    failureRedirect: '/',
     failureFlash: true
 }))
 
@@ -39,27 +39,26 @@ router.post('/login', passport.authenticate('local.signin', {
 passport.use('local.signin', new LocalStrategy({
   usernameField: 'mail',
   passwordField: 'contrasena',
-  passReqToCallback: true 
-  }
+  passReqToCallback: true ,
+  failureFlash: true
+}
   ,async (req, username, password, done) => {
     const rows= await connectionadri.query('SELECT * FROM tablatraba WHERE mail = ?', [username]);   
-    console.log (rows[0].id, "estes es el id")
     if (rows.length > 0) {
+      console.log (rows[0].id, "estes es el id")
       const user = rows[0];
       console.log (user.contrasena)
       //password solo es el que enviar el usuario y user.passwrod es el de la db
       const validPassword = await helpersp.matchPassword(password, user.contrasena)
-      console.log( "MIRA ACA A VER SI DICE TRUE O FALSE" +validPassword)
-      if (validPassword) {
-        // return done(null, false, { message: 'BIENVENIDO FIESTA FIESTA' })
-        done(null, user, req.flash('success', 'Welcome ' + user.username));
-      } else {
-        done(null, false, req.flash('message', 'Incorrect Password'));
-      }}
+      console.log( "MIRA ACA A VER SI DICE TRUE O FALSE" +validPassword)  
+      if (validPassword) {  
+        done(null, user, { message: 'bienvenido!' });
+      } 
       else {
-        return done(null, false, req.flash('message', 'The Username does not exists.'));
-      }
-  }));
+        done(null, false,  { message: 'incorrect password' });
+      }}
+    else {return done(null, false, { message: 'No user with that email' })}
+    }));
 
 
   //en mi ejemplo esto esta dentro de local strategy, pero en documentation no dice donde debe ir

@@ -7,8 +7,8 @@ const express = require('express'),
       mysql = require('mysql'),
       myConnection = require('express-myconnection');
       const bcrypt = require('bcrypt')
-      // const flash = require('express-flash')
-      const flash = require('connect-flash');
+      const flash = require('express-flash')
+      // const flash = require('connect-flash');
       const session = require('express-session')    
       const passport = require('passport')
       const methodOverride = require('method-override')
@@ -24,12 +24,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(flash())
-app.use((req, res, next) => {
-  app.locals.message = req.flash('message');
-  app.locals.success = req.flash('success');
-  app.locals.user = req.user;
-  next();
-});
+// app.use((req, res, next) => {
+//   app.locals.message = req.flash('message');
+//   app.locals.success = req.flash('success');
+//   app.locals.user = req.user;
+//   next();
+// });
 
 // importing routes
 const customerRoutes = require('./routes/customer');

@@ -17,10 +17,12 @@
   <h3>
      <%= usuario %>
   </h3>
-
+  <% if (messages.error) { %>
+    <%= messages.error %>
+  <% } %>
 </div>
 <div id= "testeo"></div>
-<li><a href="inpublicsinservidor.html">html en public, sin ir por servidor, link solo en html</a></li>
+
 
     <!-- Trigger/Open The Modal -->
     <button id="logearme"  style="
@@ -39,15 +41,16 @@ margin-bottom: 10px;" >
 <form action="/cerrarsesion" method="GET">
   <input type="submit" value="cerrar sesion" >  
 </form>
-<form action="/sabermiidsession" method="GET">
+<!-- <form action="/sabermiidsession" method="GET">
   <input type="submit" value="saber sesion" >  
-</form>
+</form> -->
 <form action="/otrapaginatest" method="GET"> 
   <input type="submit" value="pedir otra pagina en public a traves de servidor" >  
 </form>
 
 
 </div>
+<li><a href="inpublicsinservidor.html">html en public, sin ir por servidor, link solo en html</a></li>
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
@@ -114,10 +117,12 @@ margin-bottom: 10px;" >
         <p></p>
       </div>
       <form action="/login" method="POST">
+     
           <label for="email">Email:</label>
                <input type="email" id="emaillogueo" name="mail" placeholder="email" required>
                <input type="password" id="passwordlogueo" name="contrasena" placeholder="password" required>
           <input type="submit" value="Submit" >  
+          
       </form>
     </div>
   
