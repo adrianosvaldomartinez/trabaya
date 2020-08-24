@@ -35,7 +35,7 @@ crearmodales('modallogueo',"modaldelogueo","btnlogueo","logearme","cierrelogueo"
 
 
 
-// genera la tabla y todos los datos-----------------------------------------------------------------------------------
+// genera la tabla y mete los datos que se le como parametro-----------------------------------------------------------------------------------
 function generateTable(table, data) {
   for (let valoriterableAM of data) { // por cada VALOR del array (como es posible si data solo tenia la cabecera(4 VALORES) e inserto 3 rows)
     let row = table.insertRow();

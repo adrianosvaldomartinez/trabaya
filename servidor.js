@@ -40,7 +40,7 @@ app.set('port', process.env.PORT || 3000);
 // linea de abajo indicaria  donde esta la carpeta views, que en mi caso no uso
 // app.set('views', path.join(__dirname, 'views'));
 //linea de abajo se usa si se quiere usar template engine como ejs
-// app.set('view engine', 'html')
+app.set('view engine', 'ejs')
 
 // middlewares
 app.use(morgan('dev')); 

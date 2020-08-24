@@ -7,7 +7,7 @@ const helpersp = require('./helpers');
 const {connectionadri} = require('../conecction2');
 const customerController = require('../controllers/customerController');
 
-
+router.get('/', customerController.index);
 //esta ruta es llamada al abrir la pagina buscar los datos de la bd para poder usar eso datos para poblar las tablas con la func actualizar 
 router.get('/b', customerController.list);
 //esta ruta envia los datos a la bd trabaya1 desde el anadir

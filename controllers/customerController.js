@@ -2,6 +2,12 @@ const controller = {};
 const bcrypt = require('bcrypt')
 
 
+
+controller.index = (req, res) => {
+  res.render('index.ejs')  
+};
+
+
 controller.esconderme = (req, res) => {
   if(req.hasOwnProperty('user')){
     const databody = req.body;
@@ -17,7 +23,7 @@ controller.esconderme = (req, res) => {
          }
         // UPDATE tablatraba SET estudio='primaria', movilidad='auto', sexo ='masculino', telefono= '111' WHERE id = 2;
         console.log(tablatraba)
-        res.redirect('/')
+        res.render('index.ejs')
         //la linea de abajo no funciona, era para redirigir a login , pero tampoco afecta funcionamiento
         // getElementById('modallogueo').style.display = "block"
         })
@@ -37,7 +43,7 @@ controller.otrapaginatest = (req, res) => {
 controller.cerrarsesion = (req, res) => {
   if(req.hasOwnProperty('user')){
     req.logout()
-    res.redirect('/')
+    res.render('index.ejs')
   } 
   else{
     res.send("no estas logeado")
@@ -53,7 +59,7 @@ controller.sabersesion = (req, res) => {
     res.send("plz login")
   };
   console.log ("el boton JAJAJAJAJAJ")
-  res.redirect('/')
+  res.render('index.ejs')
 };
 
 controller.list = (req, res) => {
@@ -95,7 +101,7 @@ controller.save = (req, res) => {
          }
         // UPDATE tablatraba SET estudio='primaria', movilidad='auto', sexo ='masculino', telefono= '111' WHERE id = 2;
         console.log(tablatraba)
-        res.redirect('/')
+        res.render('index.ejs')
         //la linea de abajo no funciona, era para redirigir a login , pero tampoco afecta funcionamiento
         // getElementById('modallogueo').style.display = "block"
         })
@@ -119,7 +125,7 @@ controller.register = async (req, res) => {
       (err, tablatraba) => { 
         console.log("respuesta existosa") 
         
-        res.redirect('/') 
+        res.render('index.ejs') 
         // and click on btnlogueo
         console.log(tablatraba)
       })
