@@ -4,14 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <LINK href="styles.css" rel="stylesheet" type="text/css">
-
+      
     <title>Document</title>
 </head>
 <body style="
     max-width: 500px;
     margin: auto;
   ">
-<h1 >Trabaya!!</h1>
+
+<div class ="navbar">
+  <span class="open-slide">
+    <a href="#" onclick="openSlideMenu()">
+      <svg width="30" height="30">
+          <path d="M0,5 30,5" stroke="#fff" stroke-width="5"/>
+          <path d="M0,14 30,14" stroke="#fff" stroke-width="5"/>
+          <path d="M0,23 30,23" stroke="#fff" stroke-width="5"/>
+      </svg>
+    </a>
+  </span>
+
+  <div id="side-menu" class="side-nav">
+    <a href="#" class="btn-close" onclick="closeSlideMenu()">&times;</a>
+    <a id="logearme" >logearme</a>
+    <a id="registrarme">registrarme</a>
+    <a id="myBtn">añadirme o editarme de la lista!</a>
+    <div style="margin-bottom: 10px;" >    
+    
+    <form action="/escondido" method="POST">
+      <input type="submit" value="BORRAME" >  
+    </form>
+    <form action="/cerrarsesion" method="GET">
+      <input type="submit" value="cerrar sesion" >  
+    </form>
+    <form action="/otrapaginatest" method="GET"> 
+      <button type="submit" value="pedir otra pagina en public a traves de servidor" class="btn-link" >otra pagina > </button>
+    </form>
+    </div>
+    <li><a href="inpublicsinservidor.html">html en public, sin ir por servidor, link solo en html</a></li>  
+  </div>
+</div>
+
+<h1><a href="/">Trabaya!!</a></h1>
 <h1>donde la gente te busca.</h1>
 <div>
   <h3>
@@ -25,33 +58,8 @@
 
 
     <!-- Trigger/Open The Modal -->
-    <button id="logearme"  style="
-    margin-bottom: 10px;">logearme</button>
-    <button id="registrarme"  style="
-    margin-bottom: 10px;">registrarme</button>
-    <br>
-<div style="
-margin-bottom: 10px;" >    
-<button id="myBtn">añadirme o editarme de la lista!</button>
 
-<form action="/escondido" method="POST">
-  <input type="submit" value="BORRAME" >  
-</form>
-
-<form action="/cerrarsesion" method="GET">
-  <input type="submit" value="cerrar sesion" >  
-</form>
-<!-- <form action="/sabermiidsession" method="GET">
-  <input type="submit" value="saber sesion" >  
-</form> -->
-<form action="/otrapaginatest" method="GET"> 
-  <input type="submit" value="pedir otra pagina en public a traves de servidor" >  
-</form>
-
-
-</div>
-<li><a href="inpublicsinservidor.html">html en public, sin ir por servidor, link solo en html</a></li>
-
+<table class="table" ></table>
 <!-- The Modal -->
 <div id="myModal" class="modal">
 
@@ -129,13 +137,7 @@ margin-bottom: 10px;" >
   </div>
 
 
-
-
-
-
-    <table class="table" >
-    </table>
-
+    
 
 </body>
 <script src="script.js">  </script>

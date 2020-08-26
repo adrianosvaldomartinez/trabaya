@@ -2,7 +2,7 @@ const controller = {};
 const bcrypt = require('bcrypt')
 
 
-
+//go main no se usa porque no encuentra reque dentro de ruta
 function gomain (){
 if(req.hasOwnProperty('user')){
   res.render('index.ejs', { 
@@ -88,7 +88,7 @@ controller.sabersesion = (req, res) => {
 controller.list = (req, res) => {
     if(req.hasOwnProperty('user')){
       req.getConnection((err, conn) => {
-        conn.query('SELECT id, estudio, movilidad, sexo, telefono, SEC_TO_TIME(30-((now()-ModifiedTime))) AS `Tiempo restante` FROM tablatraba WHERE ModifiedTime >= now() - INTERVAL 30 SECOND AND oculto = 1', (err, tablatraba) => {
+        conn.query('SELECT id, estudio, movilidad, sexo, telefono, SEC_TO_TIME(86400-((now()-ModifiedTime))) AS `Tiempo restante` FROM tablatraba WHERE ModifiedTime >= now() - INTERVAL 86400 SECOND AND oculto = 1', (err, tablatraba) => {
         if (err) {
           res.json(err);
         }
@@ -98,7 +98,7 @@ controller.list = (req, res) => {
     }
    else{
     req.getConnection((err, conn) => {
-      conn.query('SELECT id, estudio, movilidad, sexo, TELEFONE, SEC_TO_TIME(30-((now()-ModifiedTime))) AS `Tiempo restante` FROM tablatraba WHERE ModifiedTime >= now() - INTERVAL 30 SECOND AND oculto = 1', (err, tablatraba) => {
+      conn.query('SELECT id, estudio, movilidad, sexo, TELEFONE, SEC_TO_TIME(86400-((now()-ModifiedTime))) AS `Tiempo restante` FROM tablatraba WHERE ModifiedTime >= now() - INTERVAL 86400 SECOND AND oculto = 1', (err, tablatraba) => {
       if (err) {
         res.json(err);
       }

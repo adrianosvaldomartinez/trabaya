@@ -1,5 +1,21 @@
 //hacer la pr
 
+if (document.readyState == 'loading') {
+  document.addEventListener('DOMContentLoaded', actualizar())
+} else {
+  actualizar()()
+}
+
+function openSlideMenu(){
+  document.getElementById('side-menu').style.width = '250px';
+  document.getElementById('main').style.marginLeft = '250px';
+}
+
+function closeSlideMenu(){
+  document.getElementById('side-menu').style.width = '0';
+  document.getElementById('main').style.marginLeft = '0';
+}
+
 
 
 function crearmodales(modal1,idmodal,boton, idboton, cierre,idcierra ){
@@ -29,13 +45,7 @@ crearmodales('modal',"myModal",'btn',"myBtn",'span' ,"closet");
 crearmodales('modalregistro',"modalderegistro","btnregistro","registrarme","spanregistro" ,"closeregistro")
 crearmodales('modallogueo',"modaldelogueo","btnlogueo","logearme","cierrelogueo" ,"closelogueo")
 
-
-
-
-
-
-
-// genera la tabla y mete los datos que se le como parametro-----------------------------------------------------------------------------------
+// genera la tabla y mete los datos que se le da como parametro-----------------------------------------------------------------------------------
 function generateTable(table, data) {
   for (let valoriterableAM of data) { // por cada VALOR del array (como es posible si data solo tenia la cabecera(4 VALORES) e inserto 3 rows)
     let row = table.insertRow();
@@ -60,7 +70,14 @@ function generateTableHead(table, data) {
 }
 
 //def de de funcion para realizar el fetch de los datos para poblar la tabla y luego llama las funciones que crean y muestran la tabla ---
+//usar para probar en red local, si se usa este, no va generar tabla porque no trae ningun dato
 function actualizar () {return fetch('http://localhost:3000/b')
+// usar para probar fuera de red local
+// function actualizar () {return fetch('http://181.126.2.189:3000/b')
+
+// function actualizar () {return fetch('http://192.168.0.5:3000/b')
+
+
 .then(res=> res.json())
 .then(function (res){ let dbinteresados = res
 //el lugar donde va a ir mi tabla
@@ -73,7 +90,7 @@ generateTableHead(tables, data); // then the head
 }) 
 }
 //llamado a la funcion para que la tabla se actualize con los datos de la bd, LLAMAR AL ABRIR LA PAGINA
-actualizar()
+// actualizar()
 
 // var areamensaje = document.getElementById("testeo");
 // if (message != null){
