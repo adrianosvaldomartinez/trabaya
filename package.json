@@ -22,7 +22,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "servidor.js"
+    "start": "servidor.js",
     "dev": "nodemon app.js"
   },
   "keywords": [],
