@@ -1,5 +1,6 @@
 const controller = {};
 const bcrypt = require('bcrypt')
+const {connectionadri} = require('../conecction2');
 
 
 //go main no se usa porque no encuentra reque dentro de ruta

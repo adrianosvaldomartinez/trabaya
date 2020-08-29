@@ -45,13 +45,23 @@ app.set('view engine', 'ejs')
 // middlewares
 app.use(morgan('dev')); 
 
+// app.use(myConnection(mysql, {
+//   host: 'localhost',
+//   user: 'root',
+//   password: 'password',
+//   port: 3306,
+//   database: 'trabaya1'
+// }, 'single'));
+
 app.use(myConnection(mysql, {
-  host: 'localhost',
-  user: 'root',
-  password: 'password',
+  host: 'us-cdbr-east-02.cleardb.com',
+  user: 'be2b611aeaf7f0',
+  password: 'f986f3e0',
   port: 3306,
-  database: 'trabaya1'
-}, 'single'));
+  database: 'heroku_013a915d24208e2'
+}, 
+'pool'
+));
 
 //la linea de abajo se debe usar para que expreses pueda entender los datos enviados por un formulario
 app.use(express.urlencoded({extended: false}));

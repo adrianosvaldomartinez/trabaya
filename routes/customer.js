@@ -22,7 +22,7 @@ router.get('/otrapaginatest', customerController.otrapaginatest);
 router.post('/escondido', customerController.esconderme);
 
 
-connectionadri.query('SELECT * FROM trabayamain', function (error, results, fields) {
+connectionadri.query('SELECT * FROM tablatraba', function (error, results, fields) {
   if (error) throw error;
   });
 
@@ -70,6 +70,43 @@ passport.use('local.signin', new LocalStrategy({
     const rows = await connectionadri.query('SELECT * FROM tablatraba WHERE id = ?', [id]);
     done(null, rows[0]);
   });
+
+
+  // ,async (req, username, password, done) => {
+  //   req.getConnection(async(err, conn) => {
+  //     console.log (username)
+  //   const rows=  conn.query('SELECT * FROM tablatraba WHERE mail = ?', [username]);   
+  //   console.log(rows.keys + "ACACAA")
+  //   if (rows.length > 0) {
+      
+  //     console.log (rows[0].id, "estes es el id")
+  //     const user = rows[0];
+  //     console.log (user.contrasena)
+  //     //password solo es el que enviar el usuario y user.passwrod es el de la db
+  //     const validPassword = await helpersp.matchPassword(password, user.contrasena)
+  //     console.log( "MIRA ACA A VER SI DICE TRUE O FALSE" +validPassword)  
+  //     if (validPassword) {  
+  //       done(null, user, { message: 'bienvenido!' });
+  //     } 
+  //     else {
+  //       done(null, false,  { message: 'incorrect password' });
+  //     }}
+  //   else {return done(null, false, { message: 'No user with that email' })}
+  //   })}));
+
+
+  // // en mi ejemplo esto esta dentro de local strategy, pero en documentation no dice donde debe ir
+  // passport.serializeUser(function(user, done) {
+  //   done(null, user.id);
+  // });
+  
+  // passport.deserializeUser(async (id, done) => {
+  //   req.getConnection(async(err, conn) => {
+  //   const rows = conn.query('SELECT * FROM tablatraba WHERE id = ?', [id]);
+  //   done(null, rows[0]);
+  //     console.log(rows)
+  // })
+  // });
   
 
   
