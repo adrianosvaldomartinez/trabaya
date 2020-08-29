@@ -71,7 +71,7 @@ function generateTableHead(table, data) {
 
 //def de de funcion para realizar el fetch de los datos para poblar la tabla y luego llama las funciones que crean y muestran la tabla ---
 //usar para probar en red local, si se usa este, no va generar tabla porque no trae ningun dato
-function actualizar () {return fetch('http://trabayapy.herokuapp.com/b')
+function actualizar () {return fetch('https://trabayapy.herokuapp.com/b')
 // usar para probar fuera de red local
 // function actualizar () {return fetch('http://181.126.2.189:3000/b')
 
