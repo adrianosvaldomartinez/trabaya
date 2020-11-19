@@ -116,6 +116,7 @@
     color:#ccc;
     display:block;
     transition:0.3s;
+    cursor: pointer;
   }
   
   .side-nav a:hover{
@@ -174,4 +175,19 @@
   /* side-menu width = '250px';
    marginLeft = '250px'; */
 
+}
+
+
+.botoncomolink{
+  background: none!important;
+  border: none;
+  padding:10px 10px 10px 30px;
+    text-decoration:none;
+    font-size:22px;
+    color:#ccc;
+    display:block;
+    transition:0.3s;
+    cursor: pointer;
+    font-family: 'Times New Roman', Times, serif;
+  
 }

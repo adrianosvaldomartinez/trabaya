@@ -28,22 +28,22 @@
   <div id="side-menu" class="side-nav">
     <a href="#" class="btn-close" onclick="closeSlideMenu()">&times;</a>
     <a id="showinstructions" >Show Instructions</a>
-    <a id="logearme" >logearme</a>
-    <a id="registrarme">registrarme</a>
-    <a id="myBtn">añadirme o editarme de la lista!</a>
+    <a id="logearme" >Login</a>
+    <a id="registrarme">register</a>
+    <a id="myBtn">Add me to the list or edit my data!</a>
     <div style="margin-bottom: 10px;" >    
     
     <form action="/escondido" method="POST">
-      <input type="submit" value="BORRAME" >  
+      <input class="botoncomolink" type="submit" value="Delete my data" >  
     </form>
     <form action="/cerrarsesion" method="GET">
-      <input type="submit" value="cerrar sesion" >  
+      <input type="submit" class="botoncomolink" value="Close Session" >  
     </form>
     <form action="/otrapaginatest" method="GET"> 
-      <button type="submit" value="pedir otra pagina en public a traves de servidor" class="btn-link" >otra pagina > </button>
+      <button type="submit" class="botoncomolink" value="pedir otra pagina en public a traves de servidor" class="btn-link" >Just a test to request an example page trough server > </button>
     </form>
     </div>
-    <li><a href="inpublicsinservidor.html">html en public, sin ir por servidor, link solo en html</a></li>  
+    <li><a href="inpublicsinservidor.html">Just a test to request a example page without goin trough the server</a></li>  
   </div>
 
 
@@ -51,7 +51,7 @@
   
   <!-- <img src="/Images/Band Members.png"> -->
   <h1 
-  style= "border : 2px solid green"
+  
   >
     <img style="position: relative; top:15px ; cursor: pointer " id="indice"  src="/Images/i.png" alt="pepe"  onclick="openSlideMenu()" ><a href="/">Trabaya!!</a></h1>
   <h1>donde la gente te busca.</h1>
