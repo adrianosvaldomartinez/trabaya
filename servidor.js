@@ -1,3 +1,6 @@
+// iniciar el servidor de prueba
+// npm run dev start
+
 // if (process.env.NODE_ENV !== 'production') {
 //   require('.env').config()
 // }

@@ -25,6 +25,7 @@
 
   <div id="side-menu" class="side-nav">
     <a href="#" class="btn-close" onclick="closeSlideMenu()">&times;</a>
+    <a id="showinstructions" >Show Instructions</a>
     <a id="logearme" >logearme</a>
     <a id="registrarme">registrarme</a>
     <a id="myBtn">añadirme o editarme de la lista!</a>
@@ -44,8 +45,28 @@
   </div>
 </div>
 
-<h1><a href="/">Trabaya!!</a></h1>
-<h1>donde la gente te busca.</h1>
+<div >
+  <h1><a href="/">Trabaya!!</a></h1>
+  <h1>donde la gente te busca.</h1>
+ 
+    <div id="instructions" class="instrucctionsscreen" >
+      <div class="modal-content">
+      <h1 style="text-align: center;">Welcome to Trabaya</h1>
+      <p>This is a test-App Designed to show a table where users (employees) available to work can post their data to be found by potential Employers. <br>
+        <h3>App Restrictions</h3>
+        Only logged in users can:</p>
+        <ul>
+          <li>a) Post their data into the table for other users to see it.</li>
+          <li>See the Phone number of the user.</li>
+        </ul>
+        <p>The table only shows data of the employees that updated their profile in the last 24 hs. The ideas behind this in that only people recently looking for a job its shown in the table, so the employer doesn't lose time looking through old posts. </p>
+        <!-- <div style="width: 50% ; margin: auto;" > -->
+        <button id="botoncerrar" style= "display: block;" > Close Instructions </button>
+      <!-- </div> -->
+      </div>
+  </div>
+</div>
+
 <div>
   <h3>
      <%= usuario %>
@@ -133,7 +154,9 @@
           
       </form>
     </div>
-  
+
+
+    
   </div>
 
 

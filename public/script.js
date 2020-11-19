@@ -3,8 +3,25 @@
 if (document.readyState == 'loading') {
   document.addEventListener('DOMContentLoaded', actualizar())
 } else {
-  actualizar()()
+  actualizar()
 }
+
+function openandcloseinstrucction(){
+  var instructions = document.getElementById("instructions");
+  var botoncerrar = document.getElementById("botoncerrar");
+  var botonshowinstrucction = document.getElementById("showinstructions");
+
+  botoncerrar.onclick = function() {
+    instructions.style.display = "none"
+  }
+  botonshowinstrucction.onclick = function() {
+    instructions.style.display = "block"
+  }
+}
+openandcloseinstrucction()
+
+
+
 
 function openSlideMenu(){
   document.getElementById('side-menu').style.width = '250px';
