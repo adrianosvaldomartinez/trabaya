@@ -1,6 +1,11 @@
 
 /* The Modal (background) */
 
+#indice{
+  display: inline;
+  width: 50px;
+  height: 50px;
+}
 
 #instructions{
   background-color: lightblue;
@@ -152,3 +157,21 @@
     font-size: inherit;
 }
 
+@media only screen and (min-width: 768px) {
+  /* body {
+     background-color: red;
+
+  
+  } */
+#side-menu, #main{
+  width: 250px;
+  /* margin-left: 250px; */
+  
+
+}
+
+
+  /* side-menu width = '250px';
+   marginLeft = '250px'; */
+
+}
