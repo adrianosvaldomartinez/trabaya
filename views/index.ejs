@@ -27,7 +27,7 @@
 <div class = "topcontainer" >
   <div id="side-menu" class="side-nav">
     <a href="#" class="btn-close" onclick="closeSlideMenu()">&times;</a>
-    <a id="showinstructions" >Show Instructions</a>
+    <li><a id="showinstructions" >Show Instructions</a></li>
     <a id="logearme" >Login</a>
     <a id="registrarme">register</a>
     <a id="myBtn">Add me to the list or edit my data!</a>
@@ -53,8 +53,8 @@
   <h1 
   
   >
-    <img style="position: relative; top:15px ; cursor: pointer " id="indice"  src="/Images/i.png" alt="pepe"  onclick="openSlideMenu()" ><a href="/">Trabaya-Work-now</a></h1>
-  <h1>Where people find you.</h1>
+    <img style="position: absolute; top:0px; left:0px; cursor: pointer " id="indice"  src="/Images/i.png" alt="pepe"  onclick="openSlideMenu()" ><a style= "color: lavender;" href="/">Trabaya-Work-now</a></h1>
+  <h1 style= "color: lightblue;">Where people finds you.</h1>
  
     <div id="instructions" class="instrucctionsscreen" >
       <div class="modal-content">
@@ -74,7 +74,7 @@
 </div>
 
 <div>
-  <h3>
+  <h3 style="color: lavender;">
      <%= usuario %>
   </h3>
   <% if (messages.error) { %>
@@ -91,7 +91,7 @@
 
 </table>
 
-<table class=" table-responsive-sm table table-dark table-striped table-sm ">
+<!-- <table class=" table-responsive-sm table table-dark table-striped table-sm ">
   <tr> <th> encabezdo 1 </th><th> encabezado 2</th> </tr>
   <tr><td>1</td> <td>3</td></tr>
   <tr><td>2</td> <td>4</td></tr>
@@ -100,7 +100,7 @@
   <tr> <th> encabezdo 1 </th><th> encabezado 2</th> </tr>
   <tr><td>1</td> <td>3</td></tr>
   <tr><td>2</td> <td>4</td></tr>
-</table>
+</table> -->
 <!-- The Modal -->
 <div id="myModal" class="modal">
 
