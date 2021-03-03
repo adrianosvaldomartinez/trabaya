@@ -77,6 +77,7 @@ function generateTable(table, data) {
 // genera solo los table headers
 function generateTableHead(table, data) {
   let thead = table.createTHead();
+  thead.setAttribute('class', 'thead-light');
   let row = thead.insertRow();
   for (let key of data) {
     let th = document.createElement("th");
